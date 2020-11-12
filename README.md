@@ -1,6 +1,6 @@
-# Switch To 11ty
+# switch-to-11ty
 
-Migrate a Jekyll project to 11ty
+Automatically migrate from Jekyll to 11ty
 
 > Eleventy was created to be a JavaScript alternative to Jekyll.
 
