@@ -9,11 +9,20 @@
     "eleventy"
   ],
   "license": "MIT",
+  "homepage": "https://github.com/compwright/switch-to-11ty",
+  "bugs": {
+    "url": "https://github.com/compwright/switch-to-11ty/issues"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/compwright/switch-to-11ty.git"
+  },
   "engines": {
     "node": ">=12"
   },
-  "bin": {
-    "switch-to-11ty": "bin/"
+  "directories": {
+    "lib": "src",
+    "bin": "bin"
   },
   "dependencies": {
     "liquidjs": "^9.16.1",
