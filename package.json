@@ -1,6 +1,6 @@
 {
   "name": "switch-to-11ty",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "Jonathon Hill <jonathon@compwright.com>",
   "description": "Automatically migrate from Jekyll to 11ty",
   "keywords": [
