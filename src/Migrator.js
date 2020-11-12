@@ -13,7 +13,7 @@ class Migrator {
 
   constructor (jekyllConfig = {}) {
     this.liquid = new Liquid({
-      root: path.resolve('./src/templates/'),
+      root: path.join(__dirname, 'templates'),
       cache: false
     });
 
