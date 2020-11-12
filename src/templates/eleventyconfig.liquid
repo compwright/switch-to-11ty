@@ -1,0 +1,32 @@
+// const addFilters = require('jekyll-liquid-filters');
+
+module.exports = function(eleventyConfig) {
+	// https://github.com/jekyll/jekyll/tree/master/lib/jekyll/filters
+	// addFilters(eleventyConfig);
+
+	// Turn off filename quoting in include tags
+	eleventyConfig.setLiquidOptions({
+		dynamicPartials: false
+	});
+
+	// Alias each layout file
+	{% for layoutFile in layoutFiles %}
+	eleventyConfig.addLayoutAlias('{{ layoutFile.name }}', 'layouts/{{ layoutFile.extension }}');
+	{% endfor %}
+
+	// Add collections
+	{% for collection in collections %}
+	eleventyConfig.addCollection('{{ collection }}', coll => coll.getFilteredByGlob('_{{ collection }}/*.md'));
+	{% endfor %}
+
+	// Copy the `assets` directory to the compiled site folder
+	eleventyConfig.addPassthroughCopy('assets');
+	
+	return {
+		dir: {
+			input: '{{ jekyllConfig.source | default:"./" }}',
+			output: '{{ jekyllConfig.destination | default:"./_site" }}'
+		},
+		passthroughFileCopy: true
+	};
+};

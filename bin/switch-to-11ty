@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+
+/* eslint-disable no-unused-expressions */
+
+require('yargs')
+  .scriptName('switch-to-11ty')
+  .usage(
+    '$0 <dir>',
+    'Migrate a Jekyll project to 11ty',
+    yargs => {
+      yargs.positional('dir', {
+        type: 'string',
+        demandOption: true,
+        normalize: true
+      });
+    },
+    require('../src/main')
+  )
+  .help()
+  .argv;
