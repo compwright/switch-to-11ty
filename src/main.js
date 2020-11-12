@@ -16,9 +16,10 @@ module.exports = function (argv) {
   // Migrate Jekyll files to 11ty
   const migrator = new Migrator(argv.dir);
   migrator.createRequiredDirs(argv.dir);
-  migrator.renderIgnoreFiles(argv.dir);
   migrator.renderSiteConfigFile(argv.dir);
   migrator.renderConfigFile(argv.dir);
+  migrator.renderIgnoreFile(argv.dir);
   migrator.moveLayouts(argv.dir);
   migrator.cleanupJekyllFiles(argv.dir);
+  migrator.renderGitIgnoreFile(argv.dir);
 };

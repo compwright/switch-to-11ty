@@ -47,9 +47,39 @@ class Migrator {
     fs.writeFileSync(file, contents);
   }
 
-  renderIgnoreFiles (dir) {
+  renderIgnoreFile (dir) {
+    // Remove these from the list
+    const jekyllExcludes = [
+      '.sass-cache/',
+      '.jekyll-cache/',
+      'Gemfile',
+      'Gemfile.lock',
+      'gemfiles/',
+      'vendor',
+      'vendor/bundle/',
+      'vendor/cache/',
+      'vendor/gems/',
+      'vendor/ruby/'
+    ];
+
+    // Add these to the list
+    const eleventyExcludes = [
+      'package.json',
+      'package-lock.json',
+      'node_modules'
+    ];
+
+    const contents = omit(
+      get(this, 'jekyllConfig.exclude', []),
+      jekyllExcludes
+    ).concat(eleventyExcludes).join('\n');
+
+    const file = path.join(dir, '.eleventyignore');
+    fs.writeFileSync(file, contents);
+  }
+
+  renderGitIgnoreFile (dir) {
     const srcDir = path.join(__dirname, 'templates');
-    fs.copyFileSync(path.join(srcDir, 'eleventyignore'), path.join(dir, '.eleventyignore'));
     fs.copyFileSync(path.join(srcDir, 'gitignore'), path.join(dir, '.gitignore'));
   }
 
@@ -109,7 +139,7 @@ class Migrator {
   }
 
   // @TODO scan all files for include tags and rewrite them to Shopify syntax
-  convertIncludeTags () {
+  convertIncludeTags (dir) {
     // convert {% include include.html value="key" %} -> {% include include.html, value: "key" %}
     // in each include, convert {{ include.value }} -> {{ value }}
   }
@@ -128,6 +158,7 @@ class Migrator {
     fs.rmdirSync(path.join(dir, '.sass-cache'), { recursive: true });
     fs.rmdirSync(path.join(dir, '.bundle'), { recursive: true });
     fs.rmdirSync(path.join(dir, 'vendor'), { recursive: true });
+    fs.rmdirSync(path.join(dir, 'gemfiles'), { recursive: true });
     fs.rmdirSync(path.join(dir, '_site'), { recursive: true });
   }
 }
