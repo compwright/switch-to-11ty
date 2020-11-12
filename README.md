@@ -1,6 +1,6 @@
 # switch-to-11ty
 
-Automatically migrate from Jekyll to 11ty
+Automatically migrate from [Jekyll](https://jekyllrb.com) to [11ty](https://www.11ty.dev)
 
 > Eleventy was created to be a JavaScript alternative to Jekyll.
 
