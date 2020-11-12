@@ -25,6 +25,7 @@
     "bin": "bin"
   },
   "dependencies": {
+    "fast-glob": "^3.2.4",
     "liquidjs": "^9.16.1",
     "lodash.get": "^4.4.2",
     "lodash.omit": "^4.5.0",

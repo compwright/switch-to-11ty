@@ -1,3 +1,4 @@
+const fg = require('fast-glob');
 const fs = require('fs');
 const { Liquid } = require('liquidjs');
 const get = require('lodash.get');
@@ -36,11 +37,11 @@ class Migrator {
 
   renderConfigFile (dir) {
     // render templates/.eleventy.js.liquid -> .eleventy.js
-    const config = {
-      ...this.jekyllConfig,
-      collections: Object.keys(get(this, 'jekyllConfig.collections', {})),
-      layoutFiles: []
-    };
+    const collections = Object.keys(get(this, 'jekyllConfig.collections', {}));
+    const layoutFiles = fg.sync('*.html', { cwd: path.join(dir, '_layouts'), baseNameMatch: true })
+      .map(name => path.parse(name))
+      .map(parts => ({ ...parts, dir: parts.dir ? parts.dir + '/' : '' }));
+    const config = { ...this.jekyllConfig, collections, layoutFiles };
     const contents = this.liquid.renderFileSync('eleventyconfig.liquid', config);
     const file = path.join(dir, '.eleventy.js');
     fs.writeFileSync(file, contents);

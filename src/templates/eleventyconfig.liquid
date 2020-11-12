@@ -10,8 +10,8 @@ module.exports = function(eleventyConfig) {
 	});
 
 	// Alias each layout file
-	{% for layoutFile in layoutFiles %}
-	eleventyConfig.addLayoutAlias('{{ layoutFile.name }}', 'layouts/{{ layoutFile.extension }}');
+	{% for file in layoutFiles %}
+	eleventyConfig.addLayoutAlias('{{ file.dir }}{{ file.name }}', 'layouts/{{ file.dir }}{{ file.base }}');
 	{% endfor %}
 
 	// Add collections
