@@ -29,6 +29,7 @@
     "liquidjs": "^9.16.1",
     "lodash.get": "^4.4.2",
     "lodash.omit": "^4.5.0",
+    "lodash.pull": "^4.1.0",
     "yaml": "^1.10.0",
     "yargs": "^16.1.0"
   },

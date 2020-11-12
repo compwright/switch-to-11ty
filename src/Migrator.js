@@ -4,6 +4,7 @@ const { Liquid } = require('liquidjs');
 const get = require('lodash.get');
 const omit = require('lodash.omit');
 const path = require('path');
+const pull = require('lodash.pull');
 const YAML = require('yaml');
 
 class Migrator {
@@ -69,7 +70,7 @@ class Migrator {
       'node_modules'
     ];
 
-    const contents = omit(
+    const contents = pull(
       get(this, 'jekyllConfig.exclude', []),
       jekyllExcludes
     ).concat(eleventyExcludes).join('\n');
