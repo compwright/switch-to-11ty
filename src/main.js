@@ -19,6 +19,7 @@ module.exports = function (argv) {
   migrator.renderSiteConfigFile(argv.dir);
   migrator.renderConfigFile(argv.dir);
   migrator.renderIgnoreFile(argv.dir);
+  migrator.convertIncludeTags(argv.dir);
   migrator.moveLayouts(argv.dir);
   migrator.cleanupJekyllFiles(argv.dir);
   migrator.renderGitIgnoreFile(argv.dir);

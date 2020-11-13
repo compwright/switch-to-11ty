@@ -6,6 +6,7 @@ const omit = require('lodash.omit');
 const path = require('path');
 const pull = require('lodash.pull');
 const YAML = require('yaml');
+const { rewriteFileIncludes, rewriteVarIncludes } = require('./utils');
 
 class Migrator {
   static loadConfig (dir) {
@@ -139,10 +140,21 @@ class Migrator {
     fs.writeFileSync(file, contents);
   }
 
-  // @TODO scan all files for include tags and rewrite them to Shopify syntax
   convertIncludeTags (dir) {
-    // convert {% include include.html value="key" %} -> {% include include.html, value: "key" %}
+    const layouts = fg.sync('*.html', { cwd: path.join(dir, '_layouts'), baseNameMatch: true });
+    const includes = fg.sync('*.html', { cwd: path.join(dir, '_includes'), baseNameMatch: true });
+
+    // convert {% include include.html value="key" foo=bar %} -> {% include include.html, value: "foo bar", foo: bar %}
+    layouts.map(file => path.join(dir, '_layouts', file)).forEach(file => {
+      const contents = fs.readFileSync(file).toString();
+      fs.writeFileSync(file, rewriteFileIncludes(contents));
+    });
+    
     // in each include, convert {{ include.value }} -> {{ value }}
+    includes.map(file => path.join(dir, '_includes', file)).forEach(file => {
+      const contents = fs.readFileSync(file).toString();
+      fs.writeFileSync(file, rewriteVarIncludes(contents));
+    });
   }
 
   cleanupJekyllFiles (dir) {

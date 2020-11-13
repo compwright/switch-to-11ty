@@ -25,8 +25,9 @@ To keep things simple, we're assuming you are:
 2. Migrates site configs to `_data/site.json`
 3. Creates a starter config file `.eleventy.js`
 4. Configures ignore files `.eleventyignore`, and `.gitignore`
-5. Moves `_layouts/*` to `_includes/layouts`, and adds aliases in `.eleventy.js`
-6. Deletes the Jekyll config files, cache directories, and components
+5. Rewrite all include tags from Jekyll-style to Shopify-style
+6. Moves `_layouts/*` to `_includes/layouts`, and adds aliases in `.eleventy.js`
+7. Deletes the Jekyll config files, cache directories, and components
 
 ## Installation
 
@@ -51,12 +52,12 @@ Options:
 
 ## Roadmap
 
-* Sanity check: fail if not in git source control, unless a force argument is passed
-* Rewrite all include tags from Jekyll-style to Shopify-style
-* Respect the Jekyll `data_dir`, `layout_dir`, and `includes_dir` settings
-* Set up a compatible SASS build pipeline
-* Re-implement the Jekyll Liquid filters in Javascript
-* Auto-detect asset directories other than `assets`
+[*] Rewrite all include tags from Jekyll-style to Shopify-style
+[ ] Sanity check: fail if not in git source control, unless a force argument is passed
+[ ] Respect the Jekyll `data_dir`, `layout_dir`, and `includes_dir` settings
+[ ] Set up a compatible SASS build pipeline
+[ ] Re-implement the Jekyll Liquid filters in Javascript
+[ ] Auto-detect asset directories other than `assets`
 
 ## License
 
