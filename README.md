@@ -52,12 +52,12 @@ Options:
 
 ## Roadmap
 
-[x] Rewrite all include tags from Jekyll-style to Shopify-style
-[] Sanity check: fail if not in git source control, unless a force argument is passed
-[] Respect the Jekyll `data_dir`, `layout_dir`, and `includes_dir` settings
-[] Set up a compatible SASS build pipeline
-[] Re-implement the Jekyll Liquid filters in Javascript
-[] Auto-detect asset directories other than `assets`
+- [x] Rewrite all include tags from Jekyll-style to Shopify-style
+- [ ] Sanity check: fail if not in git source control, unless a force argument is passed
+- [ ] Respect the Jekyll `data_dir`, `layout_dir`, and `includes_dir` settings
+- [ ] Set up a compatible SASS build pipeline
+- [ ] Re-implement the Jekyll Liquid filters in Javascript
+- [ ] Auto-detect asset directories other than `assets`
 
 ## License
 
